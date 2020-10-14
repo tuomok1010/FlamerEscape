@@ -1,0 +1,2 @@
+[1014/112120.087:ERROR:settings.cc(430)] Settings version is not 5
+[1014/121849.177:ERROR:directory_reader_win.cc(43)] FindFirstFile: Määritettyä polkua ei löydy. (0x3)
