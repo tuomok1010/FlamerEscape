@@ -4,28 +4,24 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-    // TODO make weapon a separate class?
-    [SerializeField] GameObject weapon;
-    [SerializeField] GameObject attachPoint;
+    [SerializeField] GameObject weaponObject;
+    [SerializeField] GameObject playerAttachPoint;
     [SerializeField] ParticleSystem weaponParticle;
     [SerializeField] GameObject Reticle;
-    [SerializeField] int fireRate;
-    [SerializeField] int maxAmmo;
-    [SerializeField] int startingAmmo;
-    [SerializeField] bool infiniteAmmo;
 
-    int currentAmmo;
-    Vector3 particleSpawnLocation;
+    Weapon weapon;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        currentAmmo = startingAmmo;
-        if(weapon && attachPoint)
+        if(weaponObject && playerAttachPoint)
         {
             // TODO Only ignore collisions with player?
-            weapon.GetComponent<BoxCollider>().enabled = false;
-            weapon = Instantiate(weapon, attachPoint.transform.position, Quaternion.identity, gameObject.transform);
+            weaponObject.GetComponent<BoxCollider>().enabled = false;
+            weaponObject = Instantiate(weaponObject, playerAttachPoint.transform.position, Quaternion.identity, gameObject.transform);
+            weapon = weaponObject.GetComponent<Weapon>();
+            weapon.bulletSpawnLocation = weapon.transform.GetChild(0).position;
         }
         else
         {
@@ -35,8 +31,7 @@ public class WeaponController : MonoBehaviour
         if(weaponParticle)
         {
             weaponParticle.Stop();
-            particleSpawnLocation = weapon.transform.GetChild(0).position;
-            weaponParticle.transform.SetPositionAndRotation(particleSpawnLocation, Quaternion.identity);
+            weaponParticle.transform.SetPositionAndRotation(weapon.bulletSpawnLocation, Quaternion.identity);
         }
         else
         {
@@ -49,7 +44,7 @@ public class WeaponController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            Shoot(ref currentAmmo, fireRate);
+            Shoot(ref weapon.currentAmmo, weapon.fireRate);
         }
         else
         {
@@ -59,21 +54,22 @@ public class WeaponController : MonoBehaviour
 
     void Shoot(ref int currentAmmo, int fireRate)
     {
-        Debug.Log("Player shoots!!");
-        Debug.Log("Current fuel: " + currentAmmo);
+        // Debug.Log("Player shoots!!");
+        // Debug.Log("Current fuel: " + currentAmmo);
 
-        if (currentAmmo > 0 || infiniteAmmo)
+        if (currentAmmo > 0 || weapon.infiniteAmmo)
         {
             // TODO make this more complex?
             currentAmmo -= fireRate;
             if (currentAmmo < 0)
                 currentAmmo = 0;
 
-            weaponParticle.Play();
+            if(!weaponParticle.isPlaying)
+                weaponParticle.Play();
         }
         else
         {
-            Debug.Log("Out of fuel!");
+            // Debug.Log("Out of fuel!");
         }
     }
 

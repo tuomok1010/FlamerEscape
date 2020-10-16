@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 8974694758517358979}
   - component: {fileID: 7152352486621691162}
   - component: {fileID: 128692668647021615}
+  - component: {fileID: 6948360039835758929}
   m_Layer: 0
-  m_Name: TestWeapon
+  m_Name: WeaponPlaceholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,6 +97,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6948360039835758929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6292212924262760248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1619e11513fc613479ca7e2eb4b55459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireRate: 1
+  maxAmmo: 1000
+  startingAmmo: 1000
+  infiniteAmmo: 1
+  currentAmmo: 0
+  bulletSpawnLocation: {x: 0, y: 0, z: 0}
 --- !u!1 &7655246817578589729
 GameObject:
   m_ObjectHideFlags: 0
