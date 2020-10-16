@@ -112,9 +112,7 @@ MonoBehaviour:
   fireRate: 1
   maxAmmo: 1000
   startingAmmo: 1000
-  infiniteAmmo: 1
-  currentAmmo: 0
-  bulletSpawnLocation: {x: 0, y: 0, z: 0}
+  infiniteAmmo: 0
 --- !u!1 &7655246817578589729
 GameObject:
   m_ObjectHideFlags: 0

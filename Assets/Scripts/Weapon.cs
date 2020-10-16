@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    // in case someone wants to add more weapons in the future
+    public enum WeaponType
+    {
+        FLAMER
+    };
+
     // TODO make a magazine and implement reloading?
     [SerializeField] public int fireRate;
     [SerializeField] public int maxAmmo;
     [SerializeField] public int startingAmmo;
     [SerializeField] public bool infiniteAmmo;
+    [SerializeField] public WeaponType weaponType;
 
-    public int currentAmmo;
-    public Vector3 bulletSpawnLocation;
+    public int currentAmmo { get; set; }
+    public Vector3 bulletSpawnLocation { get; set; }
 
     // Start is called before the first frame update
     void Start()

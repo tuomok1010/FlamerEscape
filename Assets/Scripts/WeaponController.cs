@@ -6,10 +6,11 @@ public class WeaponController : MonoBehaviour
 {
     [SerializeField] GameObject weaponObject;
     [SerializeField] GameObject playerAttachPoint;
-    [SerializeField] ParticleSystem weaponParticle;
+    [SerializeField] GameObject weaponMuzzleParticle;
     [SerializeField] GameObject Reticle;
 
     Weapon weapon;
+    ParticleSystem muzzleEffect;
 
 
     // Start is called before the first frame update
@@ -28,10 +29,11 @@ public class WeaponController : MonoBehaviour
             Debug.Log("Error! Weapon or attach point not selected");
         }
 
-        if(weaponParticle)
+        if(weaponMuzzleParticle)
         {
-            weaponParticle.Stop();
-            weaponParticle.transform.SetPositionAndRotation(weapon.bulletSpawnLocation, Quaternion.identity);
+            weaponMuzzleParticle = Instantiate(weaponMuzzleParticle, weapon.bulletSpawnLocation, Quaternion.identity, weaponObject.transform);
+            muzzleEffect = weaponMuzzleParticle.GetComponent<ParticleSystem>();
+            muzzleEffect.Stop();
         }
         else
         {
@@ -44,37 +46,42 @@ public class WeaponController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            Shoot(ref weapon.currentAmmo, weapon.fireRate);
-        }
-        else
-        {
-            StopShooting();
+            Shoot(ref weapon);
         }
     }
 
-    void Shoot(ref int currentAmmo, int fireRate)
+    void Shoot(ref Weapon weapon)
     {
-        // Debug.Log("Player shoots!!");
-        // Debug.Log("Current fuel: " + currentAmmo);
+        Debug.Log("Player shoots!!");
+        Debug.Log("Current fuel: " + weapon.currentAmmo);
 
-        if (currentAmmo > 0 || weapon.infiniteAmmo)
+        if (weapon.currentAmmo > 0 || weapon.infiniteAmmo)
         {
-            // TODO make this more complex?
-            currentAmmo -= fireRate;
-            if (currentAmmo < 0)
-                currentAmmo = 0;
-
-            if(!weaponParticle.isPlaying)
-                weaponParticle.Play();
+            switch(weapon.weaponType)
+            {
+                case Weapon.WeaponType.FLAMER:
+                {
+                    FlamerFire(ref weapon);
+                } break;
+            }
         }
         else
         {
-            // Debug.Log("Out of fuel!");
+            Debug.Log("Out of ammo!");
         }
     }
 
-    void StopShooting()
+    void FlamerFire(ref Weapon weapon)
     {
-        weaponParticle.Stop();
+        if (weapon.currentAmmo < 0)
+        {
+            weapon.currentAmmo = 0;
+        }
+
+        if (!muzzleEffect.isPlaying)
+        {
+            muzzleEffect.Play();
+            weapon.currentAmmo -= weapon.fireRate;
+        }
     }
 }

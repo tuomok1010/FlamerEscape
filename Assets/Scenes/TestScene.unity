@@ -417,6 +417,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4136345988015352854, guid: 173b567d85f89de48b2d087c883953b6, type: 3}
+      propertyPath: weaponMuzzleParticle
+      value: 
+      objectReference: {fileID: 8690913251348780712, guid: e08a1569731c84d4699b4af22791e305, type: 3}
     - target: {fileID: 4136345988015352855, guid: 173b567d85f89de48b2d087c883953b6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.9315237
