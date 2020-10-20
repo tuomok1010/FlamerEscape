@@ -6,7 +6,7 @@ public class WeaponController : MonoBehaviour
 {
     [SerializeField] GameObject weaponObject;
     [SerializeField] GameObject playerAttachPoint;
-    [SerializeField] GameObject weaponMuzzleParticle;
+    [SerializeField] GameObject weaponMuzzleParticle; // TODO move this to the weapon class? Also find out why the code works even if this is not supplied!
     [SerializeField] GameObject Reticle;
 
     Weapon weapon;
@@ -52,8 +52,8 @@ public class WeaponController : MonoBehaviour
 
     void Shoot(ref Weapon weapon)
     {
-        Debug.Log("Player shoots!!");
-        Debug.Log("Current fuel: " + weapon.currentAmmo);
+        // Debug.Log("Player shoots!!");
+        // Debug.Log("Current fuel: " + weapon.currentAmmo);
 
         if (weapon.currentAmmo > 0 || weapon.infiniteAmmo)
         {

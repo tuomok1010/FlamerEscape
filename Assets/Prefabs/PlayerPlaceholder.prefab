@@ -75,9 +75,10 @@ GameObject:
   - component: {fileID: 4136345988015352851}
   - component: {fileID: 4136345988015352860}
   - component: {fileID: 4136345988015352854}
+  - component: {fileID: 6035209352973615118}
   m_Layer: 0
   m_Name: PlayerPlaceholder
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -217,8 +218,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponObject: {fileID: 6292212924262760248, guid: 7bc7f2bceb8014547b75544e4c3f8a2f, type: 3}
   playerAttachPoint: {fileID: 4136345987722699779}
-  weaponMuzzleParticle: {fileID: 0}
+  weaponMuzzleParticle: {fileID: 8690913251348780712, guid: e08a1569731c84d4699b4af22791e305, type: 3}
   Reticle: {fileID: 4136345988780560248}
+--- !u!114 &6035209352973615118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4136345988015352861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa35b63974c1133468ce4ace5112e68a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePerSecond: 5
+  maxHealth: 100
+  startingHealth: 100
 --- !u!1 &4136345988537616402
 GameObject:
   m_ObjectHideFlags: 0
