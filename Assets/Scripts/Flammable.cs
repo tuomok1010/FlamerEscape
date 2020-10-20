@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Flammable : MonoBehaviour
 {
+    [SerializeField] bool isBurningInitially;
+
     Light pointLight;
     ParticleSystem flames;
 
@@ -18,9 +20,18 @@ public class Flammable : MonoBehaviour
         pointLight = transform.GetChild(0).GetComponent<Light>();
         if (pointLight)
         {
-            pointLight.enabled = false;
-            isBurning = false;
-            hasBurned = false;
+            if(isBurningInitially)
+            {
+                pointLight.enabled = true;
+                isBurning = true;
+                hasBurned = false;
+            }
+            else
+            {
+                pointLight.enabled = false;
+                isBurning = false;
+                hasBurned = false;
+            }
         }
         else
         {
@@ -31,7 +42,14 @@ public class Flammable : MonoBehaviour
         flames = transform.GetChild(1).GetComponent<ParticleSystem>();
         if(flames)
         {
-            flames.Stop();
+            if(isBurningInitially)
+            {
+                flames.Play();
+            }
+            else
+            {
+                flames.Stop();
+            }
         }
         else
         {
@@ -42,6 +60,7 @@ public class Flammable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // if the particle animation has ended and the fire is burning, turn if off
         if(!flames.isPlaying && isBurning)
         {
             pointLight.enabled = false;
@@ -57,13 +76,14 @@ public class Flammable : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
+        // TODO comment this if statement / check that all of these are necessary
         if ((other.tag == "Fire" || other.GetComponent<ParticleSystem>().tag == "Fire") && hasBurned == false && isBurning == false)
         {
             isBurning = true;
             pointLight.enabled = true;
             flames.Play();
 
-            // Debug.Log("Particle collision between " + name + " and " + other.name);
+            Debug.Log("Particle collision between " + name + " and " + other.name);
         }
     }
 }
