@@ -417,10 +417,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4136345988015352854, guid: 173b567d85f89de48b2d087c883953b6, type: 3}
-      propertyPath: weaponMuzzleParticle
-      value: 
-      objectReference: {fileID: 8690913251348780712, guid: e08a1569731c84d4699b4af22791e305, type: 3}
     - target: {fileID: 4136345988015352855, guid: 173b567d85f89de48b2d087c883953b6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.9315237
@@ -835,7 +831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetTransform: {fileID: 875328170}
-  _distanceToTarget: 15
+  _distanceToTarget: 10
   _followSpeed: 3
 --- !u!81 &2064483245
 AudioListener:
@@ -904,7 +900,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2064483242}
   m_LocalRotation: {x: 0.43446735, y: -0, z: -0, w: 0.9006876}
-  m_LocalPosition: {x: 0, y: 16.52, z: -12.38}
+  m_LocalPosition: {x: 0, y: 6.72, z: -7.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1431300101}
@@ -933,7 +929,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7575763167593929759, guid: fc292baaae9872842a60e35e5ba5d284, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.41
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7575763167593929759, guid: fc292baaae9872842a60e35e5ba5d284, type: 3}
       propertyPath: m_LocalPosition.z
