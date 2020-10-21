@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 128692668647021615}
   - component: {fileID: 6948360039835758929}
   m_Layer: 0
-  m_Name: WeaponPlaceholder
+  m_Name: FlamerPlaceholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,10 +109,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1619e11513fc613479ca7e2eb4b55459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 1
+  fireRate: 100
   maxAmmo: 1000
   startingAmmo: 1000
   infiniteAmmo: 0
+  weaponType: 0
 --- !u!1 &7655246817578589729
 GameObject:
   m_ObjectHideFlags: 0
