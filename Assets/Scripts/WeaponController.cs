@@ -12,7 +12,6 @@ public class WeaponController : MonoBehaviour
     Weapon weapon;
     ParticleSystem muzzleEffect;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +47,8 @@ public class WeaponController : MonoBehaviour
         {
             Shoot(ref weapon);
         }
+
+        UIController.UpdateFlamerFuel(weapon.currentAmmo);
     }
 
     void Shoot(ref Weapon weapon)

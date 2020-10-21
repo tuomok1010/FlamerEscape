@@ -83,7 +83,7 @@ public class Flammable : MonoBehaviour
             pointLight.enabled = true;
             flames.Play();
 
-            Debug.Log("Particle collision between " + name + " and " + other.name);
+            // Debug.Log("Particle collision between " + name + " and " + other.name);
         }
     }
 }

@@ -12,7 +12,6 @@ public class PlayerHealthController : MonoBehaviour
     float health;
     bool isDead;
 
-    const float second = 1.0f;
     float timeElapsed = 0.0f;
 
     // Start is called before the first frame update
@@ -31,19 +30,23 @@ public class PlayerHealthController : MonoBehaviour
         {
             TakeDamageOverTime();
         }
+
+        UIController.UpdatePlayerHealth(health);
     }
 
     void TakeDamageOverTime()
     {
+        float interval = 1.0f / damagePerSecond;
         timeElapsed += Time.deltaTime;
-        if(timeElapsed >= 1.0f)
-        {
-            health -= damagePerSecond;
 
-            if(health <= 0.0f)
+        if(timeElapsed >= interval)
+        {
+            --health;
+
+            if (health <= 0.0f)
             {
                 isDead = true;
-                if(isDead)
+                if (isDead)
                 {
                     Debug.Log("Player died!!!");
                 }
@@ -51,7 +54,7 @@ public class PlayerHealthController : MonoBehaviour
 
             timeElapsed = 0.0f;
 
-            Debug.Log("Player took " + damagePerSecond + " damage. Current health is " + health);
+            // Debug.Log("Player took " + damagePerSecond + " damage. Current health is " + health);
         }
     }
 }
