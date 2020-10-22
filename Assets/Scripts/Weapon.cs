@@ -11,7 +11,7 @@ public class Weapon : MonoBehaviour
     };
 
     // TODO make a magazine and implement reloading?
-    [SerializeField] public int fireRate;
+    [SerializeField] public int shotsPerMinute;
     [SerializeField] public int maxAmmo;
     [SerializeField] public int startingAmmo;
     [SerializeField] public bool infiniteAmmo;

@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class WeaponController : MonoBehaviour
 {
     [SerializeField] GameObject weaponObject;
     [SerializeField] GameObject playerAttachPoint;
-    [SerializeField] GameObject weaponMuzzleParticle; // TODO move this to the weapon class? Also find out why the code works even if this is not supplied!
-    [SerializeField] GameObject Reticle;
+    [SerializeField] GameObject weaponMuzzleParticle;
 
     Weapon weapon;
     ParticleSystem muzzleEffect;
+    bool firstShot;                 // first shot will be shot instantly
+    float timeElapsed;              // time between shots
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +40,9 @@ public class WeaponController : MonoBehaviour
         {
             Debug.Log("Error! weapon particle not selected");
         }
+
+        firstShot = true;
+        timeElapsed = 0.0f;
     }
 
     // Update is called once per frame
@@ -46,6 +51,11 @@ public class WeaponController : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             Shoot(ref weapon);
+        }
+
+        if(Input.GetKeyUp(KeyCode.Space))
+        {
+            StopShooting();
         }
 
         UIController.UpdateFlamerFuel(weapon.currentAmmo);
@@ -68,7 +78,7 @@ public class WeaponController : MonoBehaviour
         }
         else
         {
-            Debug.Log("Out of ammo!");
+            // do something if player tries to shoot without ammo?
         }
     }
 
@@ -79,10 +89,28 @@ public class WeaponController : MonoBehaviour
             weapon.currentAmmo = 0;
         }
 
-        if (!muzzleEffect.isPlaying)
+        float interval = 60.0f / weapon.shotsPerMinute;
+        timeElapsed += Time.deltaTime;
+
+        if (timeElapsed >= interval || firstShot)
         {
-            muzzleEffect.Play();
-            weapon.currentAmmo -= weapon.fireRate;
+            if(!muzzleEffect.isPlaying || firstShot) // || firstShot allows player to start shooting again before flame animation has ended
+            {
+                muzzleEffect.Play();
+            }
+
+            --weapon.currentAmmo;
+
+            if (firstShot)
+                firstShot = false;
+
+            timeElapsed = 0.0f;
         }
+    }
+
+    void StopShooting()
+    {
+        muzzleEffect.Stop();
+        firstShot = true;
     }
 }

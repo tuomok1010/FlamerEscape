@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1619e11513fc613479ca7e2eb4b55459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 100
+  shotsPerMinute: 2000
   maxAmmo: 1000
   startingAmmo: 1000
   infiniteAmmo: 0

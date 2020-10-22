@@ -8,6 +8,7 @@ TagManager:
   - Flammable
   - Weapon
   - Fuel
+  - GameManager
   layers:
   - Default
   - TransparentFX

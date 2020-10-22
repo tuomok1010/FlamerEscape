@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerHealthController : MonoBehaviour
 {
-    [SerializeField] float damagePerSecond;
+    [SerializeField] float damageInDarknessPerSecond;
     [SerializeField] float maxHealth;
     [SerializeField] float startingHealth;
 
@@ -32,11 +32,13 @@ public class PlayerHealthController : MonoBehaviour
         }
 
         UIController.UpdatePlayerHealth(health);
+        UIController.UpdateIsInSafeZone(isInSafeZone);
+        UIController.UpdateIsPlayerDead(isDead);
     }
 
     void TakeDamageOverTime()
     {
-        float interval = 1.0f / damagePerSecond;
+        float interval = 1.0f / damageInDarknessPerSecond;
         timeElapsed += Time.deltaTime;
 
         if(timeElapsed >= interval)
@@ -46,15 +48,10 @@ public class PlayerHealthController : MonoBehaviour
             if (health <= 0.0f)
             {
                 isDead = true;
-                if (isDead)
-                {
-                    Debug.Log("Player died!!!");
-                }
+                GameState.gameState = GameState.State.DEATH;
             }
 
             timeElapsed = 0.0f;
-
-            // Debug.Log("Player took " + damagePerSecond + " damage. Current health is " + health);
         }
     }
 }

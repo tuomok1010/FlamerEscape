@@ -46,17 +46,17 @@ public class SafeZone : MonoBehaviour
 
         if (other.gameObject.tag == "Player")
         {
-            PlayerHealthController phc = other.gameObject.GetComponent<PlayerHealthController>();
-            if (phc)
+            PlayerHealthController p = other.gameObject.GetComponent<PlayerHealthController>();
+            if (p)
             {
                 if (isValid)
                 {
                     // Debug.Log("Player entered safeZone");
-                    phc.isInSafeZone = true;
+                    p.isInSafeZone = true;
                 }
                 else
                 {
-                    phc.isInSafeZone = false;
+                    p.isInSafeZone = false;
                 }
             }
             else
@@ -70,10 +70,8 @@ public class SafeZone : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            // Debug.Log("Player exited safeZone");
-
-            PlayerHealthController phc = other.gameObject.GetComponent<PlayerHealthController>();
-            phc.isInSafeZone = false;
+            PlayerHealthController p = other.gameObject.GetComponent<PlayerHealthController>();
+            p.isInSafeZone = false;
         }
     }
 }
