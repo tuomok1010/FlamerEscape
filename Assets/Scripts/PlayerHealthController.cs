@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO: consider moving player stats (health, isDead etc.) to the GameManager
+
 public class PlayerHealthController : MonoBehaviour
 {
     [SerializeField] float damageInDarknessPerSecond;
@@ -48,7 +50,7 @@ public class PlayerHealthController : MonoBehaviour
             if (health <= 0.0f)
             {
                 isDead = true;
-                GameState.gameState = GameState.State.DEATH;
+                GameManager.gameState = GameManager.State.DEATH;
             }
 
             timeElapsed = 0.0f;

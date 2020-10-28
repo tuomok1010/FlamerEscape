@@ -2,7 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// NOTE the radius of the safeZone sphere collider should be equal to the range of the light
+// TODO: consider making this more generic so that it doesn't necessarily require a flammable component in parent.
+
+// TODO: Support for other shapes in addition to the sphere
+
+// TODO: There might be a bug when there are multiple safezones near each other. Seems to happen when you move
+//       between safepoints as one of the fires fade. Find and fix!!
 
 public class SafeZone : MonoBehaviour
 {

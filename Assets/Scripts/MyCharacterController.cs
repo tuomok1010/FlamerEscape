@@ -21,8 +21,28 @@ namespace ECM.Walkthrough.CustomCharacterController
             // Toggle pause / resume.
             // By default, will restore character's velocity on resume (eg: restoreVelocityOnResume = true)
 
+            /*
             if (Input.GetKeyDown(KeyCode.P))
                 pause = !pause;
+            */
+
+            // TODO: is this the best place for this?
+            if (GameManager.gameState == GameManager.State.MENU)
+            {
+                FreezeCharacter();
+                // GameManager.PauseGame(); // // TODO Use this to pause/unpause instead?
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    UnfreezeCharacter();
+                    // GameManager.UnpauseGame(); // TODO Use this to pause/unpause instead?
+                    GameManager.gameState = GameManager.State.GAME;
+                }
+            }
+
+            if(GameManager.gameState == GameManager.State.DEATH)
+            {
+                FreezeCharacter();
+            }
 
             // Handle user input
 
@@ -38,6 +58,16 @@ namespace ECM.Walkthrough.CustomCharacterController
 
             // crouch not needed
             // crouch = Input.GetKey(KeyCode.C);
+        }
+
+        public void FreezeCharacter()
+        {
+            pause = true;
+        }
+
+        public void UnfreezeCharacter()
+        {
+            pause = false;
         }
     }
 }

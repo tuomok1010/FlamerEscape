@@ -39,19 +39,19 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch(GameState.gameState)
+        switch (GameManager.gameState)
         {
-            case GameState.State.MENU:
+            case GameManager.State.MENU:
             {
                 DrawMenuUI();
             } break;
 
-            case GameState.State.GAME:
+            case GameManager.State.GAME:
             {
                 DrawGameUI();
             } break;
 
-            case GameState.State.DEATH:
+            case GameManager.State.DEATH:
             {
                 DrawDeathUI();
             } break;
@@ -104,6 +104,8 @@ public class UIController : MonoBehaviour
         healthText.text = "";
         safeZoneText.text = "";
         isPlayerDeadText.text = "";
+        gameNameText.text = "";
+        pressSpaceText.text = "";
     }
 
     static public void UpdateFlamerFuel(int newValue)

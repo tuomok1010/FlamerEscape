@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class WeaponController : MonoBehaviour
 {
     [SerializeField] GameObject weaponObject;
@@ -48,6 +47,7 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // TODO: consider moving Inputs into the MyCharacterController class
         if (Input.GetKey(KeyCode.Space))
         {
             Shoot(ref weapon);
