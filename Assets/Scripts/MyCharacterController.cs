@@ -8,6 +8,7 @@ namespace ECM.Walkthrough.CustomCharacterController
     ///
     /// This show how to create a custom character controller extending one of the included 'Base' controller. 
     /// </summary>
+    ///
 
     public class MyCharacterController : BaseCharacterController
     {
@@ -26,22 +27,98 @@ namespace ECM.Walkthrough.CustomCharacterController
                 pause = !pause;
             */
 
-            // TODO: is this the best place for this?
-            if (GameManager.gameState == GameManager.State.MENU)
+            switch (GameManager.gameState)
             {
-                FreezeCharacter();
-                // GameManager.PauseGame(); // // TODO Use this to pause/unpause instead?
-                if (Input.GetKeyDown(KeyCode.Space))
+                case GameManager.State.MENU:
                 {
-                    UnfreezeCharacter();
-                    // GameManager.UnpauseGame(); // TODO Use this to pause/unpause instead?
-                    GameManager.gameState = GameManager.State.GAME;
-                }
-            }
+                    // FreezeCharacter();
+                    GameManager.PauseGame();
+                    if (Input.GetKeyDown(KeyCode.Space))
+                    {
+                        // UnfreezeCharacter();
+                        GameManager.UnpauseGame();
+                        GameManager.gameState = GameManager.State.GAME;
+                    }
 
-            if(GameManager.gameState == GameManager.State.DEATH)
-            {
-                FreezeCharacter();
+                    if(Input.GetKeyDown(KeyCode.Escape))
+                    {
+                        Application.Quit();
+                    }
+
+                } break;
+
+                case GameManager.State.GAME:
+                {
+                    if (Input.GetKey(KeyCode.Space))
+                    {
+                        gameObject.GetComponent<WeaponController>().Shoot();
+                    }
+
+                    if (Input.GetKeyUp(KeyCode.Space))
+                    {
+                        gameObject.GetComponent<WeaponController>().StopShooting();
+                    }
+
+                    if(Input.GetKeyDown(KeyCode.Escape))
+                    {
+                        GameManager.gameState = GameManager.State.PAUSE;
+                    }
+
+                } break;
+
+                case GameManager.State.DEATH:
+                {
+                    // FreezeCharacter();
+                    GameManager.PauseGame();
+                    if (Input.GetKeyDown(KeyCode.Space))
+                    {
+                        GameManager.RestartGame();
+                    }
+
+                    if (Input.GetKeyDown(KeyCode.Escape))
+                    {
+                        Application.Quit();
+                    }
+                } break;
+
+                case GameManager.State.WIN:
+                {
+                    // FreezeCharacter();
+                    GameManager.PauseGame();
+                    if (Input.GetKeyDown(KeyCode.Space))
+                    {
+                        GameManager.RestartGame();
+                    }
+
+                    if (Input.GetKeyDown(KeyCode.Escape))
+                    {
+                        Application.Quit();
+                    }
+
+                } break;
+
+                case GameManager.State.PAUSE:
+                {
+                    // FreezeCharacter();
+                    GameManager.PauseGame();
+
+                    if (Input.GetKeyDown(KeyCode.Space))
+                    {
+                        GameManager.gameState = GameManager.State.GAME;
+                        GameManager.UnpauseGame();
+                    }
+
+                    if (Input.GetKeyDown(KeyCode.Escape))
+                    {
+                        Application.Quit();
+                    }
+
+                } break;
+
+                default:
+                {
+
+                } break;
             }
 
             // Handle user input

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class GameManager : MonoBehaviour
         MENU,
         GAME,
         DEATH,
-        WIN
+        WIN,
+        PAUSE
     }
 
     public static State gameState;
@@ -17,6 +19,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         gameState = GameManager.State.MENU;
+        SceneManager.LoadScene(1);
     }
 
     // Start is called before the first frame update
@@ -40,5 +43,11 @@ public class GameManager : MonoBehaviour
     public static void UnpauseGame()
     {
         Time.timeScale = 1;
+    }
+
+    public static void RestartGame()
+    {
+        gameState = GameManager.State.MENU;
+        SceneManager.LoadScene(0);
     }
 }

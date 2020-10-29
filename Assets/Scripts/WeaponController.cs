@@ -47,21 +47,10 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // TODO: consider moving Inputs into the MyCharacterController class
-        if (Input.GetKey(KeyCode.Space))
-        {
-            Shoot(ref weapon);
-        }
 
-        if(Input.GetKeyUp(KeyCode.Space))
-        {
-            StopShooting();
-        }
-
-        UIController.UpdateFlamerFuel(weapon.currentAmmo);
     }
 
-    void Shoot(ref Weapon weapon)
+    public void Shoot()
     {
         // Debug.Log("Player shoots!!");
         // Debug.Log("Current fuel: " + weapon.currentAmmo);
@@ -72,7 +61,7 @@ public class WeaponController : MonoBehaviour
             {
                 case Weapon.WeaponType.FLAMER:
                 {
-                    FlamerFire(ref weapon);
+                    FlamerFire();
                 } break;
             }
         }
@@ -80,9 +69,11 @@ public class WeaponController : MonoBehaviour
         {
             // do something if player tries to shoot without ammo?
         }
+
+        UIController.UpdateFlamerFuel(weapon.currentAmmo);
     }
 
-    void FlamerFire(ref Weapon weapon)
+    void FlamerFire()
     {
         if (weapon.currentAmmo < 0)
         {
@@ -108,7 +99,7 @@ public class WeaponController : MonoBehaviour
         }
     }
 
-    void StopShooting()
+    public void StopShooting()
     {
         muzzleEffect.Stop();
         firstShot = true;

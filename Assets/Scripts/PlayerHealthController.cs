@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// TODO: consider moving player stats (health, isDead etc.) to the GameManager
+// TODO: consider moving player stats (health, isDead etc.) to the GameManager, maybe in a separate Player class
 
 public class PlayerHealthController : MonoBehaviour
 {
@@ -30,6 +30,9 @@ public class PlayerHealthController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.gameState != GameManager.State.GAME)
+            return;
+
         if (isInSafeZone)
         {
             HealOverTime();
@@ -43,6 +46,8 @@ public class PlayerHealthController : MonoBehaviour
         UIController.UpdateIsInSafeZone(isInSafeZone);
         UIController.UpdateIsPlayerDead(isDead);
 
+        // NOTE: this needs to be here otherwise player will keep flashing between safe and danger zones when they are in a safezone.
+        // TODO: find a better solution
         float interval = 0.5f;
         timeElapsedInUpdate += Time.deltaTime;
         if (timeElapsedInUpdate >= interval)
