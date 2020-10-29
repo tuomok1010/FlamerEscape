@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
     {
         MENU,
         GAME,
-        DEATH
+        DEATH,
+        WIN
     }
 
     public static State gameState;

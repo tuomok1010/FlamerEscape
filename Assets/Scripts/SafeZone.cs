@@ -38,45 +38,17 @@ public class SafeZone : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (flammable.isBurning)
-        {
-            isValid = true;
-            // Debug.Log("set isValid to true");
-        }
-        else
-        {
-            isValid = false;
-            // Debug.Log("set isValid to false");
-        }
-
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && flammable.isBurning)
         {
             PlayerHealthController p = other.gameObject.GetComponent<PlayerHealthController>();
             if (p)
             {
-                if (isValid)
-                {
-                    // Debug.Log("Player entered safeZone");
-                    p.isInSafeZone = true;
-                }
-                else
-                {
-                    p.isInSafeZone = false;
-                }
+                p.isInSafeZone = true;
             }
             else
             {
                 Debug.Log("Failed to retrieve PlayerHealthComponent in SafeZone");
             }
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            PlayerHealthController p = other.gameObject.GetComponent<PlayerHealthController>();
-            p.isInSafeZone = false;
         }
     }
 }
