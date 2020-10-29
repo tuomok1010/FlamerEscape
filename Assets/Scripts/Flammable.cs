@@ -76,7 +76,6 @@ public class Flammable : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        // TODO comment this if statement / check that all of these are necessary
         if ((other.tag == "Fire" || other.GetComponent<ParticleSystem>().tag == "Fire") && hasBurned == false && isBurning == false)
         {
             isBurning = true;

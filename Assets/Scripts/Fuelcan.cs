@@ -67,6 +67,8 @@ public class Fuelcan : MonoBehaviour
             weapon.currentAmmo += refillAmount;
         }
 
+        UIController.UpdateFlamerFuel(weapon.currentAmmo);
+
         Debug.Log("Player weapon refilled with " + refillAmount + " ammo.");
         Debug.Log("Current ammo: " + weapon.currentAmmo);
     }
