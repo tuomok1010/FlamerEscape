@@ -18,6 +18,8 @@ public class PlayerHealthController : MonoBehaviour
     float timeElapsedInHealOverTime = 0.0f;
     float timeElapsedInUpdate = 0.0f;
 
+    AudioSource deathSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,25 @@ public class PlayerHealthController : MonoBehaviour
         isDead = false;
 
         isInSafeZone = false;
+
+        // TODO: see if there is a cleaner way to do this
+        Component[] audioComponents = GetComponentsInChildren<AudioSource>();
+        for (int i = 0; i < audioComponents.Length; ++i)
+        {
+            if (audioComponents[i].gameObject.tag == "PlayerDeathSound")
+                deathSound = (AudioSource)audioComponents[i];
+        }
+
+        if (deathSound)
+        {
+            deathSound.loop = false;
+            deathSound.Stop();
+            deathSound.enabled = true;
+        }
+        else
+        {
+            Debug.Log("Error! Could not find death sound AudioSource on player");
+        }
     }
 
     // Update is called once per frame
@@ -59,6 +80,8 @@ public class PlayerHealthController : MonoBehaviour
 
     void TakeDamageOverTime()
     {
+        // NOTE: this may be buggy
+        // TODO: test!
         float interval = 1.0f / damageInDarknessPerSecond;
         timeElapsedInUpdate += Time.deltaTime;
 
@@ -69,6 +92,7 @@ public class PlayerHealthController : MonoBehaviour
             if (health <= 0.0f)
             {
                 isDead = true;
+                deathSound.Play();
                 GameManager.gameState = GameManager.State.DEATH;
             }
             timeElapsedInUpdate = 0.0f;

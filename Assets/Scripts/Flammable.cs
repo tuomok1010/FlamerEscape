@@ -9,6 +9,7 @@ public class Flammable : MonoBehaviour
 
     Light pointLight;
     ParticleSystem flames;
+    AudioSource burnSound;
 
     public bool isBurning { get; set; }
     public bool hasBurned { get; set; }
@@ -55,6 +56,26 @@ public class Flammable : MonoBehaviour
         {
             Debug.Log("Error! Could not find particle system on " + gameObject.name);
         }
+
+        // NOTE: Audio source must be the 2nd child of the object!
+        burnSound = transform.GetChild(2).GetComponent<AudioSource>();
+        if(burnSound)
+        {
+            if(isBurningInitially)
+            {
+                burnSound.enabled = true;
+                burnSound.Play();
+            }
+            else
+            {
+                burnSound.Stop();
+                burnSound.enabled = false;
+            }
+        }
+        else
+        {
+            Debug.Log("Error! Could not find audio source on " + gameObject.name);
+        }
     }
 
     // Update is called once per frame
@@ -63,14 +84,15 @@ public class Flammable : MonoBehaviour
         // if the particle animation has ended and the fire is burning, turn if off
         if(!flames.isPlaying && isBurning)
         {
-            pointLight.enabled = false;
             isBurning = false;
             hasBurned = true;
         }
 
         if(hasBurned)
         {
-            // TODO change the model to a destoyed version
+            pointLight.enabled = false;
+            burnSound.Stop();
+            burnSound.enabled = false;
         }
     }
 
@@ -80,8 +102,10 @@ public class Flammable : MonoBehaviour
         {
             isBurning = true;
             pointLight.enabled = true;
-            flames.Play();
+            burnSound.enabled = true;
 
+            flames.Play();
+            burnSound.Play();
             // Debug.Log("Particle collision between " + name + " and " + other.name);
         }
     }

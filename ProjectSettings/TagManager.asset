@@ -9,6 +9,8 @@ TagManager:
   - Weapon
   - Fuel
   - GameManager
+  - WeaponSound
+  - PlayerDeathSound
   layers:
   - Default
   - TransparentFX
