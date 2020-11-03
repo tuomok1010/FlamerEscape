@@ -45,7 +45,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4745186742051122561}
-  m_Mesh: {fileID: 2534964839176971238, guid: 193c19c457d097a4cb1212117a23ee25, type: 3}
+  m_Mesh: {fileID: -1189176151888187397, guid: 14ad08b71e7080a42aacbf01678fa51f, type: 3}
 --- !u!23 &6546745408800296020
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: 193c19c457d097a4cb1212117a23ee25, type: 3}
+  - {fileID: 2100000, guid: 74e03467cd4a10e4d9dcb66797c0dbe8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -390,7 +390,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8632076, g: 1, b: 0.9316038, a: 1}
   m_Intensity: 5
   m_Range: 7
   m_SpotAngle: 30
