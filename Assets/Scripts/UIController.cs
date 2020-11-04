@@ -14,6 +14,8 @@ public class UIController : MonoBehaviour
     [SerializeField] Text pressSpaceText;
     [SerializeField] Text pressEscText;
     [SerializeField] Text controls;
+    [SerializeField] Image deathScreen;
+    [SerializeField] Image winScreen;
 
     static int flamerFuel;
     static float health;
@@ -68,6 +70,7 @@ public class UIController : MonoBehaviour
 
             default:
             {
+                Debug.Log("Error! Unknown game state!");
                 ClearAll();
             } break;
         }
@@ -115,6 +118,8 @@ public class UIController : MonoBehaviour
 
         pressEscText.color = textWhite;
         pressEscText.text = "Press esc to quit";
+
+        deathScreen.enabled = true;
     }
 
     void DrawWinUI()
@@ -127,6 +132,8 @@ public class UIController : MonoBehaviour
 
         pressEscText.color = textWhite;
         pressEscText.text = "Press esc to quit";
+
+        winScreen.enabled = true;
     }
 
     void DrawPauseUI()
@@ -154,6 +161,8 @@ public class UIController : MonoBehaviour
         pressSpaceText.text = "";
         pressEscText.text = "";
         controls.text = "";
+        deathScreen.enabled = false;
+        winScreen.enabled = false;
     }
 
     static public void UpdateFlamerFuel(int newValue)
