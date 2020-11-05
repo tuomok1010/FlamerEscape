@@ -41,6 +41,7 @@ public class PlayerHealthController : MonoBehaviour
             deathSound.loop = false;
             deathSound.Stop();
             deathSound.enabled = true;
+            deathSound.ignoreListenerPause = true;
         }
         else
         {
