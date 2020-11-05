@@ -451,7 +451,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2817381811185529209, guid: 5e4a20d8a75e70144aceec71f6336b4b, type: 3}
       propertyPath: m_Name
-      value: BonfireFlamesPlaceholder
+      value: BonfireFlames
       objectReference: {fileID: 0}
     - target: {fileID: 2817381811185529210, guid: 5e4a20d8a75e70144aceec71f6336b4b, type: 3}
       propertyPath: m_LocalPosition.x
