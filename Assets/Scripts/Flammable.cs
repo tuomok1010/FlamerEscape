@@ -10,6 +10,7 @@ public class Flammable : MonoBehaviour
     Light pointLight;
     ParticleSystem flames;
     AudioSource burnSound;
+    GameObject ashes;
 
     public bool isBurning { get; set; }
     public bool hasBurned { get; set; }
@@ -76,6 +77,17 @@ public class Flammable : MonoBehaviour
         {
             Debug.Log("Error! Could not find audio source on " + gameObject.name);
         }
+
+        // NOTE: Ashes gameobject must be the 2nd child of the object!
+        ashes = transform.GetChild(3).gameObject;
+        if(ashes)
+        {
+            ashes.SetActive(false);
+        }
+        if(!ashes)
+        {
+            Debug.Log("Error! Could not find ashes gameobject on " + gameObject.name);
+        }
     }
 
     // Update is called once per frame
@@ -86,6 +98,11 @@ public class Flammable : MonoBehaviour
         {
             isBurning = false;
             hasBurned = true;
+
+            // change the visible model to ashes and disable collision
+            GetComponent<MeshRenderer>().enabled = false;
+            GetComponent<Collider>().enabled = false;
+            ashes.SetActive(true);
         }
 
         if(hasBurned)
