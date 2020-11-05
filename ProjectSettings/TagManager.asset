@@ -12,6 +12,7 @@ TagManager:
   - WeaponSound
   - PlayerDeathSound
   - GameBackGroundMusic
+  - Ashes
   layers:
   - Default
   - TransparentFX
