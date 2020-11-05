@@ -576,6 +576,14 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6318677180846771396, guid: 5e4a20d8a75e70144aceec71f6336b4b, type: 3}
+      propertyPath: InitialModule.startColor.maxGradient.key0.a
+      value: 0.5019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 6318677180846771396, guid: 5e4a20d8a75e70144aceec71f6336b4b, type: 3}
+      propertyPath: InitialModule.startColor.maxGradient.key1.a
+      value: 0.5019608
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e4a20d8a75e70144aceec71f6336b4b, type: 3}
 --- !u!4 &7103868796791994618 stripped
