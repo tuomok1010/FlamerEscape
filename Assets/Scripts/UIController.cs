@@ -16,11 +16,18 @@ public class UIController : MonoBehaviour
     [SerializeField] Text controls;
     [SerializeField] Image deathScreen;
     [SerializeField] Image winScreen;
+    [SerializeField] Image damageEffect;
+    [SerializeField] Image logo;
 
     static int flamerFuel;
     static float health;
     static bool isInSafeZone;
     static bool isPlayerDead;
+
+    static float damageEffectAlpha;
+    static float damageEffectMaxAlpha;
+    static float damageEffectMinAlpha;
+    static float damageEffectAlphaIncrement;
 
     Color textGreen;
     Color textRed;
@@ -29,6 +36,11 @@ public class UIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        damageEffectMinAlpha = 0.0f;
+        damageEffectAlpha = damageEffectMinAlpha;
+        damageEffectMaxAlpha = 0.05f;
+        damageEffectAlphaIncrement = 0.0005f;
+
         textGreen = new Color(0.0f, 0.5f, 0.0f, 1.0f);
         textRed = new Color(0.5f, 0.0f, 0.0f, 1.0f);
         textWhite = new Color(0.5f, 0.5f, 0.5f, 1.0f);
@@ -55,6 +67,7 @@ public class UIController : MonoBehaviour
 
             case GameManager.State.DEATH:
             {
+                StopDamageEffect();
                 DrawDeathUI();
             } break;
 
@@ -78,8 +91,9 @@ public class UIController : MonoBehaviour
 
     void DrawMenuUI()
     {
-        gameNameText.color = textWhite;
-        gameNameText.text = "FLAMER";
+        //gameNameText.color = textWhite;
+        //gameNameText.text = "FLAMER";
+        logo.enabled = true;
 
         pressSpaceText.color = textWhite;
         pressSpaceText.text = "Press space to start";
@@ -95,6 +109,7 @@ public class UIController : MonoBehaviour
     {
         fuelText.text = "Fuel: " + flamerFuel;
         healthText.text = "Health: " + health;
+        damageEffect.color = new Color(damageEffect.color.r, damageEffect.color.g, damageEffect.color.b, damageEffectAlpha);
 
         if (isInSafeZone)
         {
@@ -138,8 +153,9 @@ public class UIController : MonoBehaviour
 
     void DrawPauseUI()
     {
-        gameNameText.color = textWhite;
-        gameNameText.text = "PAUSED";
+        //gameNameText.color = textWhite;
+        //gameNameText.text = "PAUSED";
+        logo.enabled = true;
 
         pressSpaceText.color = textWhite;
         pressSpaceText.text = "Press space to continue";
@@ -163,6 +179,7 @@ public class UIController : MonoBehaviour
         controls.text = "";
         deathScreen.enabled = false;
         winScreen.enabled = false;
+        logo.enabled = false;
     }
 
     static public void UpdateFlamerFuel(int newValue)
@@ -184,4 +201,20 @@ public class UIController : MonoBehaviour
     {
         isPlayerDead = newValue;
     }
+
+    static public void ApplyDamageEffect()
+    {
+        if (damageEffectAlpha <= damageEffectMinAlpha)
+            damageEffectAlphaIncrement = 0.01f;
+        else if (damageEffectAlpha >= damageEffectMaxAlpha)
+            damageEffectAlphaIncrement = -0.01f;
+
+        damageEffectAlpha += damageEffectAlphaIncrement;
+    }
+
+    static public void StopDamageEffect()
+    {
+        damageEffectAlpha = 0.0f;
+    }
+
 }

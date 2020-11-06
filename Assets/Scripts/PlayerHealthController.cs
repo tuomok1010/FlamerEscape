@@ -58,6 +58,7 @@ public class PlayerHealthController : MonoBehaviour
         if (isInSafeZone)
         {
             HealOverTime();
+            UIController.StopDamageEffect();
         }
         else if(!isDead)
         {
@@ -89,6 +90,7 @@ public class PlayerHealthController : MonoBehaviour
         if(timeElapsedInUpdate >= interval)
         {
             --health;
+            UIController.ApplyDamageEffect();
 
             if (health <= 0.0f)
             {
