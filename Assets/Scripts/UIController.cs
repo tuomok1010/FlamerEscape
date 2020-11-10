@@ -14,6 +14,8 @@ public class UIController : MonoBehaviour
     [SerializeField] Text pressSpaceText;
     [SerializeField] Text pressEscText;
     [SerializeField] Text controls;
+    [SerializeField] Text creditsText;
+    [SerializeField] Text musicCreditsText;
     [SerializeField] Image deathScreen;
     [SerializeField] Image winScreen;
     [SerializeField] Image damageEffect;
@@ -148,6 +150,12 @@ public class UIController : MonoBehaviour
         pressEscText.color = textWhite;
         pressEscText.text = "Press esc to quit";
 
+        creditsText.color = textWhite;
+        creditsText.text = "Flamer is made by:\nTuomo\nPasi\nMaria\nSamu\nEetu";
+
+        musicCreditsText.color = textWhite;
+        musicCreditsText.text = "music and sound from Zapsplat";
+
         winScreen.enabled = true;
     }
 
@@ -177,6 +185,8 @@ public class UIController : MonoBehaviour
         pressSpaceText.text = "";
         pressEscText.text = "";
         controls.text = "";
+        creditsText.text = "";
+        musicCreditsText.text = "";
         deathScreen.enabled = false;
         winScreen.enabled = false;
         logo.enabled = false;
