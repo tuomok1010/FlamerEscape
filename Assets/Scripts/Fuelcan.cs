@@ -38,7 +38,7 @@ public class Fuelcan : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("Player picked up " + name);
+            // Debug.Log("Player picked up " + name);
             Weapon playerWeapon = other.gameObject.GetComponentInChildren<Weapon>();
 
             if (playerWeapon)
@@ -69,7 +69,7 @@ public class Fuelcan : MonoBehaviour
 
         UIController.UpdateFlamerFuel(weapon.currentAmmo);
 
-        Debug.Log("Player weapon refilled with " + refillAmount + " ammo.");
-        Debug.Log("Current ammo: " + weapon.currentAmmo);
+        // Debug.Log("Player weapon refilled with " + refillAmount + " ammo.");
+        // Debug.Log("Current ammo: " + weapon.currentAmmo);
     }
 }

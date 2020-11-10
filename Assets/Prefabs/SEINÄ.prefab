@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7056765975846875077}
   - component: {fileID: 6215373003755446368}
   - component: {fileID: 8189100588264690858}
+  - component: {fileID: -6621157142442715347}
   m_Layer: 0
   m_Name: "SEIN\xC4"
   m_TagString: Untagged
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &-6621157142442715347
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7684684579295868287}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.011578861, y: 0.050567474, z: 0.028348869}
+  m_Center: {x: -0.00020485064, y: -0.00056614686, z: 0.014500598}
